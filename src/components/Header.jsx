@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from '../assets/images/uni-lang.png'
+import logo from '/public/images/uni-lang.png';
 
 export default function Header() {
     return (

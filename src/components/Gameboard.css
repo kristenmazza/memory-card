@@ -1,3 +1,22 @@
-.gameboard-container {
+.main-container {
     background-color: #739191;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 80%;
+    padding-bottom: 20px;
+}
+
+.card-image {
+    height: 260px;
+    width: auto;
+    border-radius: 15px;
+    filter: drop-shadow(-3px 4px 5px rgb(32, 32, 32));
 }
