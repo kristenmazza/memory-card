@@ -10,27 +10,33 @@ function shuffle({ newImageList }) {
     return shuffledImages;
 }
 
+function updateCurrentScore({ imageList, name, currentScore, setCurrentScore }) {
+    const selectedImage = imageList.find(current => current.name === name);
+
+    if (selectedImage.clicked) {
+        console.log("you lose")
+    } else {
+        incrementCurrentScore({ currentScore, setCurrentScore })
+    }
+}
+
 function updateClickStatus({ imageList, name, currentScore, setCurrentScore }) {
     const newImageList = imageList.map(image => {
         if (image.name !== name) {
             return image;
         } else {
-            if (image.clicked !== true) {
-                updateCurrentScore({ currentScore, setCurrentScore });
-            } else {
-                console.log("you lose")
-            }
             return {
                 ...image,
                 clicked: true,
             };
         }
-    })
+    });
 
+    updateCurrentScore({ imageList, name, currentScore, setCurrentScore });
     return newImageList;
 }
 
-function updateCurrentScore({ currentScore, setCurrentScore }) {
+function incrementCurrentScore({ currentScore, setCurrentScore }) {
     setCurrentScore(currentScore + 1)
 }
 
