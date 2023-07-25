@@ -20,3 +20,20 @@
     border-radius: 15px;
     filter: drop-shadow(-3px 4px 5px rgb(32, 32, 32));
 }
+
+@media (max-width: 500px) {
+    .card-image {
+        height: 130px;
+        width: auto;
+    }
+
+    .main-container {
+        align-items: stretch;
+        padding: 5%;
+    }
+
+    .gameboard-container {
+        width: 90%;
+        justify-content: space-around;
+    }
+}
