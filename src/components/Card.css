@@ -1,0 +1,42 @@
+.card-container {
+    height: 260px;
+    width: 185.71px;
+    perspective: 1000px;
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card-front,
+.card-back {
+    height: 100%;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image {
+    height: 260px;
+    width: auto;
+    border-radius: 15px;
+    filter: drop-shadow(-3px 4px 5px rgb(32, 32, 32));
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+@media (max-width: 500px) {
+    .card-image {
+        height: 130px;
+        width: auto;
+    }
+}

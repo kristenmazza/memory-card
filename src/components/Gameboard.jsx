@@ -1,3 +1,4 @@
+import Card from './Card';
 import './Gameboard.css';
 import { useState } from 'react';
 
@@ -75,8 +76,3 @@ export default function Gameboard() {
     )
 }
 
-function Card({ src }) {
-    return (
-        < img className="card-image" src={src} />
-    )
-}
