@@ -84,7 +84,16 @@ function App() {
         setCurrentScore={setCurrentScore}
         setModalStatus={setModalStatus}
       />
-      <Modal modalStatus={modalStatus} />
+      <Modal
+        modalStatus={modalStatus}
+        currentScore={currentScore}
+        setModalStatus={setModalStatus}
+        setCurrentScore={setCurrentScore}
+        setImageList={setImageList}
+        images={images}
+        bestScore={bestScore}
+        setBestScore={setBestScore}
+      />
       <Footer />
     </>
   );

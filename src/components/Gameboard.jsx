@@ -10,6 +10,19 @@ function shuffle({ newImageList }) {
     return shuffledImages;
 }
 
+function updateBestScore(currentScore, bestScore, setBestScore) {
+    if (currentScore > bestScore) {
+        setBestScore(currentScore)
+    }
+}
+
+export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore) {
+    setModalStatus("");
+    setCurrentScore(0);
+    setImageList(images);
+    updateBestScore(currentScore, bestScore, setBestScore);
+}
+
 function updateCurrentScore({ imageList, name, currentScore, setCurrentScore, setModalStatus }) {
     const selectedImage = imageList.find(current => current.name === name);
 
@@ -40,13 +53,13 @@ function incrementCurrentScore({ currentScore, setCurrentScore }) {
     setCurrentScore(currentScore + 1)
 }
 
-export function handleClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus }) {
-    const newImageList = updateClickStatus({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus });
+export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore }) {
+    const newImageList = updateClickStatus({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore });
     const shuffledImages = shuffle({ newImageList, setImageList });
     setImageList(shuffledImages);
 }
 
-export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus }) {
+export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore }) {
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
@@ -59,6 +72,8 @@ export default function Gameboard({ imageList, setImageList, currentScore, setCu
                     currentScore={currentScore}
                     setCurrentScore={setCurrentScore}
                     setModalStatus={setModalStatus}
+                    bestScore={bestScore}
+                    setBestScore={setBestScore}
                 />
             </React.Fragment>
         )
