@@ -1,6 +1,5 @@
 import Card from './Card';
 import './Gameboard.css';
-import { useState } from 'react';
 import React from 'react';
 
 function shuffle({ newImageList }) {
@@ -16,24 +15,27 @@ function updateBestScore(currentScore, bestScore, setBestScore) {
     }
 }
 
-export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore) {
+export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon) {
     setModalStatus("");
     setCurrentScore(0);
     setImageList(images);
     updateBestScore(currentScore, bestScore, setBestScore);
+    setGameIsWon(false);
 }
 
-function updateCurrentScore({ imageList, name, currentScore, setCurrentScore, setModalStatus }) {
+function updateCurrentScore({ imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
     const selectedImage = imageList.find(current => current.name === name);
 
     if (selectedImage.clicked) {
         setModalStatus("visible");
     } else {
-        incrementCurrentScore({ currentScore, setCurrentScore })
+        incrementCurrentScore({
+            currentScore, setCurrentScore, setGameIsWon, setModalStatus
+        })
     }
 }
 
-function updateClickStatus({ imageList, name, currentScore, setCurrentScore, setModalStatus }) {
+function updateClickStatus({ imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
     const newImageList = imageList.map(image => {
         if (image.name !== name) {
             return image;
@@ -45,21 +47,34 @@ function updateClickStatus({ imageList, name, currentScore, setCurrentScore, set
         }
     });
 
-    updateCurrentScore({ imageList, name, currentScore, setCurrentScore, setModalStatus });
+    updateCurrentScore({
+        imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
+    });
     return newImageList;
 }
 
-function incrementCurrentScore({ currentScore, setCurrentScore }) {
-    setCurrentScore(currentScore + 1)
+function displayWin(setGameIsWon, setModalStatus) {
+    setGameIsWon(true);
+    setModalStatus("visible");
 }
 
-export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore }) {
-    const newImageList = updateClickStatus({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore });
+function incrementCurrentScore({ currentScore, setCurrentScore, setGameIsWon, setModalStatus }) {
+    setCurrentScore(currentScore + 1)
+
+    if (currentScore + 1 === 12) {
+        displayWin(setGameIsWon, setModalStatus)
+    }
+}
+
+export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
+    const newImageList = updateClickStatus({
+        imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
+    });
     const shuffledImages = shuffle({ newImageList, setImageList });
     setImageList(shuffledImages);
 }
 
-export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore }) {
+export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore, setGameIsWon }) {
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
@@ -72,8 +87,7 @@ export default function Gameboard({ imageList, setImageList, currentScore, setCu
                     currentScore={currentScore}
                     setCurrentScore={setCurrentScore}
                     setModalStatus={setModalStatus}
-                    bestScore={bestScore}
-                    setBestScore={setBestScore}
+                    setGameIsWon={setGameIsWon}
                 />
             </React.Fragment>
         )
