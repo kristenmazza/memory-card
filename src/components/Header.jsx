@@ -1,7 +1,8 @@
 import './Header.css';
 import logo from '/public/images/uni-lang.png';
+import Scoreboard from './Scoreboard';
 
-export default function Header() {
+export default function Header({ currentScore, bestScore }) {
     return (
         <header className="header">
             <div className="header-column">
@@ -9,8 +10,7 @@ export default function Header() {
                 <div className="header-column instructions">Don't click the same card twice!</div>
             </div>
             <div className="header-column">
-                <div className="score">Current score:</div>
-                <div className="score">High score:</div>
+                <Scoreboard currentScore={currentScore} bestScore={bestScore} />
             </div>
         </header>
     )

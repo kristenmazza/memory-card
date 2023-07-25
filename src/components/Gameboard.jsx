@@ -3,21 +3,55 @@ import './Gameboard.css';
 import { useState } from 'react';
 import React from 'react';
 
-export function shuffle({ imageOrder, setImageOrder }) {
-    console.log(imageOrder)
-    const shuffledImages = [...imageOrder];
+function shuffle({ newImageList }) {
+    const shuffledImages = [...newImageList];
     shuffledImages.sort(() => Math.random() - 0.5)
 
-    console.log(shuffledImages);
-    setImageOrder(shuffledImages);
+    return shuffledImages;
 }
 
-export default function Gameboard({ imageOrder, setImageOrder }) {
-    const cards = imageOrder.map(image => {
+function updateClickStatus({ imageList, name, currentScore, setCurrentScore }) {
+    const newImageList = imageList.map(image => {
+        if (image.name !== name) {
+            return image;
+        } else {
+            if (image.clicked !== true) {
+                updateCurrentScore({ currentScore, setCurrentScore });
+            } else {
+                console.log("you lose")
+            }
+            return {
+                ...image,
+                clicked: true,
+            };
+        }
+    })
+
+    return newImageList;
+}
+
+function updateCurrentScore({ currentScore, setCurrentScore }) {
+    setCurrentScore(currentScore + 1)
+}
+
+export function handleClick({ imageList, setImageList, name, currentScore, setCurrentScore }) {
+    const newImageList = updateClickStatus({ imageList, setImageList, name, currentScore, setCurrentScore });
+    const shuffledImages = shuffle({ newImageList, setImageList });
+    setImageList(shuffledImages);
+}
+
+export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore }) {
+    const cards = imageList.map(image => {
         const { name, src } = image;
         return (
             <React.Fragment key={name}>
-                <Card src={src} imageOrder={imageOrder} setImageOrder={setImageOrder} />
+                <Card
+                    src={src}
+                    imageList={imageList}
+                    setImageList={setImageList}
+                    name={name}
+                    currentScore={currentScore}
+                    setCurrentScore={setCurrentScore} />
             </React.Fragment>
         )
     });

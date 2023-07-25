@@ -35,8 +35,16 @@
 }
 
 @media (max-width: 500px) {
+    .card-container {
+        height: 130px;
+        width: 92.85px;
+        perspective: 1000px;
+    }
+
     .card-image {
         height: 130px;
         width: auto;
     }
+
+
 }
