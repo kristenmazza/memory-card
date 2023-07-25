@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Gameboard from './components/Gameboard';
 import Footer from './components/Footer';
+import Modal from './components/Modal';
 
 function App() {
   const images = [
@@ -71,6 +72,7 @@ function App() {
   const [imageList, setImageList] = useState(images);
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [modalStatus, setModalStatus] = useState("");
 
   return (
     <>
@@ -80,7 +82,9 @@ function App() {
         setImageList={setImageList}
         currentScore={currentScore}
         setCurrentScore={setCurrentScore}
+        setModalStatus={setModalStatus}
       />
+      <Modal modalStatus={modalStatus} />
       <Footer />
     </>
   );
