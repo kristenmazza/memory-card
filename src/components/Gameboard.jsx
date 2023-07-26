@@ -1,7 +1,6 @@
 import Card from './Card';
 import './Gameboard.css';
 import React from 'react';
-import { useState } from 'react';
 
 export function shuffle({ newImageList }) {
     const shuffledImages = [...newImageList];
@@ -21,10 +20,11 @@ function updateBestScore(currentScore, bestScore, setBestScore) {
     }
 }
 
-export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon, setShowFront) {
+export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon, setShowFront, setPointerEvent) {
     setModalStatus("");
     setCurrentScore(0);
     setShowFront(true);
+    setPointerEvent(true);
 
     const newImageList = [...images]
     const shuffledImages = shuffle({ newImageList });
@@ -77,8 +77,10 @@ function incrementCurrentScore({ currentScore, setCurrentScore, setGameIsWon, se
     }
 }
 
-export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon, setShowFront }) {
+export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon, setShowFront, setPointerEvent }) {
     setShowFront(false);
+    setPointerEvent(false);
+
     const newImageList = updateClickStatus({
         imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
     });
@@ -88,7 +90,7 @@ export function handleCardClick({ imageList, setImageList, name, currentScore, s
     }, "300");
 }
 
-export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon, modalStatus, showFront, setShowFront }) {
+export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon, modalStatus, showFront, setShowFront, setPointerEvent, pointerEvent }) {
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
@@ -105,6 +107,8 @@ export default function Gameboard({ imageList, setImageList, currentScore, setCu
                     showFront={showFront}
                     setShowFront={setShowFront}
                     modalStatus={modalStatus}
+                    setPointerEvent={setPointerEvent}
+                    pointerEvent={pointerEvent}
                 />
             </React.Fragment>
         )

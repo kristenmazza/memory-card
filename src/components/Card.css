@@ -11,6 +11,10 @@
     position: relative;
 }
 
+.no-click {
+    pointer-events: none;
+}
+
 .card-front,
 .card-back {
     height: 100%;

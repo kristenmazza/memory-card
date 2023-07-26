@@ -79,6 +79,7 @@ function App() {
   const [modalStatus, setModalStatus] = useState("");
   const [gameIsWon, setGameIsWon] = useState(false)
   const [showFront, setShowFront] = useState(true);
+  const [pointerEvent, setPointerEvent] = useState(true);
 
   return (
     <>
@@ -93,6 +94,8 @@ function App() {
         modalStatus={modalStatus}
         showFront={showFront}
         setShowFront={setShowFront}
+        setPointerEvent={setPointerEvent}
+        pointerEvent={pointerEvent}
       />
       <Modal
         modalStatus={modalStatus}
@@ -106,6 +109,7 @@ function App() {
         gameIsWon={gameIsWon}
         setGameIsWon={setGameIsWon}
         setShowFront={setShowFront}
+        setPointerEvent={setPointerEvent}
       />
       <Footer />
     </>
