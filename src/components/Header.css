@@ -57,12 +57,13 @@
 @media (max-width: 500px) {
     .logo {
         height: auto;
-        width: 150px;
+        width: 160px;
     }
 
     .instructions {
         font-size: 12px;
-        width: 130px;
+        width: 150px;
         height: auto;
+        padding: 4px 6px;
     }
 }
