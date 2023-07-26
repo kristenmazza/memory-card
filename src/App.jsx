@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import Gameboard from './components/Gameboard';
+import Gameboard, { shuffle } from './components/Gameboard';
 import Footer from './components/Footer';
 import Modal from './components/Modal';
 
@@ -69,11 +69,16 @@ function App() {
     },
   ]
 
-  const [imageList, setImageList] = useState(images);
+  // Shuffle images on load
+  const newImageList = [...images]
+  const shuffledImages = shuffle({ newImageList });
+
+  const [imageList, setImageList] = useState(shuffledImages);
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [modalStatus, setModalStatus] = useState("");
   const [gameIsWon, setGameIsWon] = useState(false)
+
 
   return (
     <>

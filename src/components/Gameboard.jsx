@@ -2,11 +2,16 @@ import Card from './Card';
 import './Gameboard.css';
 import React from 'react';
 
-function shuffle({ newImageList }) {
+export function shuffle({ newImageList }) {
     const shuffledImages = [...newImageList];
-    shuffledImages.sort(() => Math.random() - 0.5)
+    shuffledImages.sort(() => Math.random() - 0.5);
 
     return shuffledImages;
+}
+
+function createShuffledImageList({ newImageList, setImageList }) {
+    const shuffledImages = shuffle({ newImageList });
+    setImageList(shuffledImages);
 }
 
 function updateBestScore(currentScore, bestScore, setBestScore) {
@@ -18,7 +23,11 @@ function updateBestScore(currentScore, bestScore, setBestScore) {
 export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon) {
     setModalStatus("");
     setCurrentScore(0);
-    setImageList(images);
+
+    const newImageList = [...images]
+    const shuffledImages = shuffle({ newImageList });
+    setImageList(shuffledImages);
+
     updateBestScore(currentScore, bestScore, setBestScore);
     setGameIsWon(false);
 }
@@ -70,11 +79,11 @@ export function handleCardClick({ imageList, setImageList, name, currentScore, s
     const newImageList = updateClickStatus({
         imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
     });
-    const shuffledImages = shuffle({ newImageList, setImageList });
-    setImageList(shuffledImages);
+    createShuffledImageList({ newImageList, setImageList });
 }
 
 export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
+
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
