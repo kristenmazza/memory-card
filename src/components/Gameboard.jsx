@@ -1,6 +1,7 @@
 import Card from './Card';
 import './Gameboard.css';
 import React from 'react';
+import { useState } from 'react';
 
 export function shuffle({ newImageList }) {
     const shuffledImages = [...newImageList];
@@ -20,9 +21,10 @@ function updateBestScore(currentScore, bestScore, setBestScore) {
     }
 }
 
-export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon) {
+export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon, setShowFront) {
     setModalStatus("");
     setCurrentScore(0);
+    setShowFront(true);
 
     const newImageList = [...images]
     const shuffledImages = shuffle({ newImageList });
@@ -75,15 +77,18 @@ function incrementCurrentScore({ currentScore, setCurrentScore, setGameIsWon, se
     }
 }
 
-export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
+export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon, setShowFront }) {
+    setShowFront(false);
     const newImageList = updateClickStatus({
         imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
     });
-    createShuffledImageList({ newImageList, setImageList });
+
+    setTimeout(() => {
+        createShuffledImageList({ newImageList, setImageList });
+    }, "300");
 }
 
-export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
-
+export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon, modalStatus, showFront, setShowFront }) {
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
@@ -97,6 +102,9 @@ export default function Gameboard({ imageList, setImageList, currentScore, setCu
                     setCurrentScore={setCurrentScore}
                     setModalStatus={setModalStatus}
                     setGameIsWon={setGameIsWon}
+                    showFront={showFront}
+                    setShowFront={setShowFront}
+                    modalStatus={modalStatus}
                 />
             </React.Fragment>
         )

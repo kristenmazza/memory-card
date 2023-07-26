@@ -78,7 +78,7 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [modalStatus, setModalStatus] = useState("");
   const [gameIsWon, setGameIsWon] = useState(false)
-
+  const [showFront, setShowFront] = useState(true);
 
   return (
     <>
@@ -90,6 +90,9 @@ function App() {
         setCurrentScore={setCurrentScore}
         setModalStatus={setModalStatus}
         setGameIsWon={setGameIsWon}
+        modalStatus={modalStatus}
+        showFront={showFront}
+        setShowFront={setShowFront}
       />
       <Modal
         modalStatus={modalStatus}
@@ -102,6 +105,7 @@ function App() {
         setBestScore={setBestScore}
         gameIsWon={gameIsWon}
         setGameIsWon={setGameIsWon}
+        setShowFront={setShowFront}
       />
       <Footer />
     </>

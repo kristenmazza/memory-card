@@ -34,6 +34,32 @@
     transform: rotateY(180deg);
 }
 
+.flip-exit {
+    transform: rotateY(0deg);
+}
+
+.flip-exit-active {
+    transform: rotateY(180deg);
+    transition: transform 300ms;
+}
+
+.flip-exit-done {
+    transform: rotateY(180deg);
+}
+
+.flip-enter {
+    transform: rotateY(180deg);
+}
+
+.flip-enter-active {
+    transform: rotateY(0deg);
+    transition: transform 300ms;
+}
+
+.flip-enter-done {
+    transform: rotateY(0deg);
+}
+
 @media (max-width: 500px) {
     .card-container {
         height: 130px;
@@ -45,6 +71,4 @@
         height: 130px;
         width: auto;
     }
-
-
 }
