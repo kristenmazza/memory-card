@@ -6,7 +6,7 @@ export default function Header({ currentScore, bestScore }) {
     return (
         <header className="header">
             <div className="header-column">
-                <img className="logo" src={logo} />
+                <img className="logo" alt="Logo" src={logo} />
                 <div className="header-column instructions">Don't click the same card twice!</div>
             </div>
             <div className="header-column">
