@@ -74,7 +74,7 @@ export function handleCardClick({ imageList, setImageList, name, currentScore, s
     setImageList(shuffledImages);
 }
 
-export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, bestScore, setBestScore, setGameIsWon }) {
+export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
