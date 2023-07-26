@@ -7,8 +7,8 @@ export default function Modal({ modalStatus, currentScore, setModalStatus, setCu
     return (
         <div className={classList} >
             <section className="modal">
-                {gameIsWon && <p>You win! You selected all 12 unique cards!</p>}
-                {!gameIsWon && <p>You lose! You selected {currentScore} of 12 unique cards!</p>}
+                {gameIsWon && <div className="announcement"><h2 className="modal-heading">You win! 🏆</h2><p>You selected all 12 unique cards!</p></div>}
+                {!gameIsWon && <div className="announcement"><h2 className="modal-heading">You lose! 🤔</h2><p> You selected {currentScore} of 12 unique cards!</p></div>}
                 <button className="play-btn" onClick={() => handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon, setShowFront, setPointerEvent)}>Play Again</button>
             </section>
         </div >
