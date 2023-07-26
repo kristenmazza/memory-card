@@ -28,7 +28,7 @@ export default function Card({ src, imageList, setImageList, name, currentScore,
 
                 <div className={pointerEvent ? "card" : "card no-click"} ref={nodeRef}>
                     <div className="card-back">
-                        <img className="card-image" src="/src/images/card-images/back.png" />
+                        <img className="card-image" src="/images/card-images/back.png" />
                     </div>
                     <div className="card-front" onClick={() => handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon, setShowFront, showFront, setPointerEvent })}>
                         < img className="card-image" src={src} />
