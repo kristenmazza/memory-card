@@ -9,62 +9,62 @@ function App() {
   const images = [
     {
       name: 'korean',
-      src: '/public/images/card-images/korean.png',
+      src: '/src/images/card-images/korean.png',
       clicked: false
     },
     {
       name: 'arabic',
-      src: '/public/images/card-images/arabic.png',
+      src: '/src/images/card-images/arabic.png',
       clicked: false
     },
     {
       name: 'french',
-      src: '/public/images/card-images/french.png',
+      src: '/src/images/card-images/french.png',
       clicked: false
     },
     {
       name: 'german',
-      src: '/public/images/card-images/german.png',
+      src: '/src/images/card-images/german.png',
       clicked: false
     },
     {
       name: 'hindi',
-      src: '/public/images/card-images/hindi.png',
+      src: '/src/images/card-images/hindi.png',
       clicked: false
     },
     {
       name: 'italian',
-      src: '/public/images/card-images/italian.png',
+      src: '/src/images/card-images/italian.png',
       clicked: false
     },
     {
       name: 'japanese',
-      src: '/public/images/card-images/japanese.png',
+      src: '/src/images/card-images/japanese.png',
       clicked: false
     },
     {
       name: 'mandarin',
-      src: '/public/images/card-images/mandarin.png',
+      src: '/src/images/card-images/mandarin.png',
       clicked: false
     },
     {
       name: 'portuguese',
-      src: '/public/images/card-images/portuguese.png',
+      src: '/src/images/card-images/portuguese.png',
       clicked: false
     },
     {
       name: 'russian',
-      src: '/public/images/card-images/russian.png',
+      src: '/src/images/card-images/russian.png',
       clicked: false
     },
     {
       name: 'spanish',
-      src: '/public/images/card-images/spanish.png',
+      src: '/src/images/card-images/spanish.png',
       clicked: false
     },
     {
       name: 'turkish',
-      src: '/public/images/card-images/turkish.png',
+      src: '/src/images/card-images/turkish.png',
       clicked: false
     },
   ]

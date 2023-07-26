@@ -9,6 +9,7 @@
     width: 100%;
     transform-style: preserve-3d;
     position: relative;
+    user-select: none;
 }
 
 .no-click {

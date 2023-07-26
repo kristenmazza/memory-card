@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from '/public/images/uni-lang.png';
+import logo from '/src/images/uni-lang.png';
 import Scoreboard from './Scoreboard';
 
 export default function Header({ currentScore, bestScore }) {
