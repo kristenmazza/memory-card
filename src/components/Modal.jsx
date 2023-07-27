@@ -1,8 +1,24 @@
-import { handlePlayAgainClick } from './Gameboard'
+import { shuffle } from './Gameboard'
 import './Modal.css'
+import { updateBestScore } from './Scoreboard';
+import Gameboard from './Gameboard';
 
 export default function Modal({ modalStatus, currentScore, setModalStatus, setCurrentScore, setImageList, images, bestScore, setBestScore, gameIsWon, setGameIsWon, setShowFront, setPointerEvent }) {
     const classList = modalStatus === "" ? "modal-container" : "modal-container visible"
+
+    const handlePlayAgainClick = () => {
+        setModalStatus("");
+        setCurrentScore(0);
+        setShowFront(true);
+        setPointerEvent(true);
+
+        const newImageList = [...images]
+        const shuffledImages = shuffle({ newImageList });
+        setImageList(shuffledImages);
+
+        updateBestScore(currentScore, bestScore, setBestScore);
+        setGameIsWon(false);
+    };
 
     return (
         <div className={classList} >

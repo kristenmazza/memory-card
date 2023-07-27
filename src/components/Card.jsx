@@ -1,7 +1,8 @@
 import './Card.css';
-import { handleCardClick } from './Gameboard';
 import { CSSTransition } from 'react-transition-group';
 import { useRef, useEffect } from 'react';
+import { updateCurrentScore } from './Scoreboard';
+import { createShuffledImageList } from './Gameboard';
 
 export default function Card({ src, imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon, showFront, setShowFront, modalStatus, setPointerEvent, pointerEvent }) {
     const nodeRef = useRef(null);
@@ -16,6 +17,35 @@ export default function Card({ src, imageList, setImageList, name, currentScore,
             return () => clearTimeout(timeout);
         }
     }, [showFront]);
+
+    const updateClickStatus = () => {
+        const newImageList = imageList.map(image => {
+            if (image.name !== name) {
+                return image;
+            } else {
+                return {
+                    ...image,
+                    clicked: true,
+                };
+            }
+        });
+
+        updateCurrentScore({
+            imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
+        });
+        return newImageList;
+    };
+
+    const handleCardClick = () => {
+        setShowFront(false);
+        setPointerEvent(false);
+
+        const newImageList = updateClickStatus();
+
+        setTimeout(() => {
+            createShuffledImageList({ newImageList, setImageList });
+        }, "300");
+    };
 
     return (
         <div className={"card-container"}>

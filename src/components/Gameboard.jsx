@@ -2,95 +2,8 @@ import Card from './Card';
 import './Gameboard.css';
 import React from 'react';
 
-export function shuffle({ newImageList }) {
-    const shuffledImages = [...newImageList];
-    shuffledImages.sort(() => Math.random() - 0.5);
-
-    return shuffledImages;
-}
-
-function createShuffledImageList({ newImageList, setImageList }) {
-    const shuffledImages = shuffle({ newImageList });
-    setImageList(shuffledImages);
-}
-
-function updateBestScore(currentScore, bestScore, setBestScore) {
-    if (currentScore > bestScore) {
-        setBestScore(currentScore)
-    }
-}
-
-export function handlePlayAgainClick(setModalStatus, setCurrentScore, setImageList, images, currentScore, bestScore, setBestScore, setGameIsWon, setShowFront, setPointerEvent) {
-    setModalStatus("");
-    setCurrentScore(0);
-    setShowFront(true);
-    setPointerEvent(true);
-
-    const newImageList = [...images]
-    const shuffledImages = shuffle({ newImageList });
-    setImageList(shuffledImages);
-
-    updateBestScore(currentScore, bestScore, setBestScore);
-    setGameIsWon(false);
-}
-
-function updateCurrentScore({ imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
-    const selectedImage = imageList.find(current => current.name === name);
-
-    if (selectedImage.clicked) {
-        setModalStatus("visible");
-    } else {
-        incrementCurrentScore({
-            currentScore, setCurrentScore, setGameIsWon, setModalStatus
-        })
-    }
-}
-
-function updateClickStatus({ imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon }) {
-    const newImageList = imageList.map(image => {
-        if (image.name !== name) {
-            return image;
-        } else {
-            return {
-                ...image,
-                clicked: true,
-            };
-        }
-    });
-
-    updateCurrentScore({
-        imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
-    });
-    return newImageList;
-}
-
-function displayWin(setGameIsWon, setModalStatus) {
-    setGameIsWon(true);
-    setModalStatus("visible");
-}
-
-function incrementCurrentScore({ currentScore, setCurrentScore, setGameIsWon, setModalStatus }) {
-    setCurrentScore(currentScore + 1)
-
-    if (currentScore + 1 === 12) {
-        displayWin(setGameIsWon, setModalStatus)
-    }
-}
-
-export function handleCardClick({ imageList, setImageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon, setShowFront, setPointerEvent }) {
-    setShowFront(false);
-    setPointerEvent(false);
-
-    const newImageList = updateClickStatus({
-        imageList, name, currentScore, setCurrentScore, setModalStatus, setGameIsWon
-    });
-
-    setTimeout(() => {
-        createShuffledImageList({ newImageList, setImageList });
-    }, "300");
-}
-
 export default function Gameboard({ imageList, setImageList, currentScore, setCurrentScore, setModalStatus, setGameIsWon, modalStatus, showFront, setShowFront, setPointerEvent, pointerEvent }) {
+
     const cards = imageList.map(image => {
         const { name, src } = image;
         return (
@@ -123,3 +36,14 @@ export default function Gameboard({ imageList, setImageList, currentScore, setCu
     )
 }
 
+export function shuffle({ newImageList }) {
+    const shuffledImages = [...newImageList];
+    shuffledImages.sort(() => Math.random() - 0.5);
+
+    return shuffledImages;
+}
+
+export function createShuffledImageList({ newImageList, setImageList }) {
+    const shuffledImages = shuffle({ newImageList });
+    setImageList(shuffledImages);
+}
