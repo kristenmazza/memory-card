@@ -6,7 +6,7 @@ Uni Lang is a memory game consisting of 12 cards. Each card features the word "h
 [Live Demo](https://kristenmazza-memory-game.netlify.app/) :point_left:
 
 ## Learning Objectives
-This project was completed to improve knowledge and implmentation of React concepts, especially hooks. Animations were included with the help of the Effect hook.
+This project was completed to improve knowledge and implementation of React concepts, especially hooks. Animations were included with the help of the Effect hook.
 
 
 ## Setup Instructions
