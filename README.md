@@ -2,6 +2,7 @@
 Uni Lang is a memory game consisting of 12 cards. Each card features the word "hello" in a different language. Earn points by clicking on the cards. The objective is to accumulate as many points as possible without clicking the same card twice.
 
 ![Uni Lang Demo](/public/images/demo.gif)
+
 [Live Demo](https://kristenmazza-memory-game.netlify.app/) :point_left:
 
 ## Learning Objectives
