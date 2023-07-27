@@ -1,8 +1,14 @@
-# React + Vite
+# Uni Lang: A Language Memory Game
+Uni Lang is a memory game consisting of 12 cards. Each card features the word "hello" in a different language. Earn points by clicking on the cards. The objective is to accumulate as many points as possible without clicking the same card twice.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Uni Lang Demo](/public/images/demo.gif)
+[Live Demo](https://kristenmazza-memory-game.netlify.app/) :point_left:
 
-Currently, two official plugins are available:
+## Learning Objectives
+This project was completed to improve knowledge and implmentation of React concepts, especially hooks. Animations were included with the help of the Effect hook.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Setup Instructions
+1. Install dependencies using `npm install`
+2. Use `npm run dev` to start dev server and run the application in development mode
+3. Use `npm run build` to build the app. The app can then be tested locally by using `npm run preview`
